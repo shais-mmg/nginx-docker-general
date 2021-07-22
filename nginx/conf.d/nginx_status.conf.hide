@@ -1,0 +1,25 @@
+server {
+        listen       82;
+
+location /nginx_status {
+  stub_status on;
+  access_log   off;
+  allow 127.0.0.1;
+  allow 199.203.63.145;
+  allow 62.219.153.40;
+  allow 84.110.212.162;
+  deny all;
+
+}
+location ~ ^/(status|ping)$ {
+     access_log off;
+     #allow 127.0.0.1;
+     #allow 1.2.3.4#your-ip;
+     #deny all;
+     include fastcgi_params;
+     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+     fastcgi_pass 127.0.0.1:9000;
+ }
+
+}
+

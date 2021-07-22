@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  web:
+    container_name: nginx-web
+    build:
+      context: ./nginx
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./src:/home/
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    - ./nginx/conf.d/:/etc/nginx/conf.d
+    - ./nginx/fastcgi.conf:/etc/nginx/fastcgi.conf
+      #- ./log/optimus-api:/var/log/optimus-api/
+      #    - ./log/optimus/:/var/log/optimus/
+
